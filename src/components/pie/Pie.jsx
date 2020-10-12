@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import Chart from './Chart';
+import PropTypes from 'prop-types';
+import Chart from '../chart/Chart';
 import './pie.css';
 
 function Pie({ ingredientsList }) {
@@ -38,6 +39,10 @@ function Pie({ ingredientsList }) {
       </figure>
     </>
   );
+};
+
+Pie.propTypes = {
+  ingredientsList: PropTypes.array.isRequired,
 }
 
 export default React.memo(Pie);

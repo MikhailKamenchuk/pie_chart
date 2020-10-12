@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { idGenerator } from '../utils';
+import PropTypes from 'prop-types';
+import { idGenerator } from '../../utils';
 import './ingredientCreationForm.css'
 
 const IngredientCreationForm = ({ ingredientsList, setIngredientsList, maxPossible }) => {
@@ -61,8 +62,13 @@ const IngredientCreationForm = ({ ingredientsList, setIngredientsList, maxPossib
         </div>
       </form>
     </>
-
   )
+}
+
+IngredientCreationForm.propTypes = {
+  setIngredientsList: PropTypes.func.isRequired,
+  maxPossible: PropTypes.number.isRequired,
+  ingredientsList: PropTypes.array.isRequired,
 }
 
 export default React.memo(IngredientCreationForm)

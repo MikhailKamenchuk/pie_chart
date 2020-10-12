@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
+import './header.css';
 
 const Header = ({ countOfIngredients, setCountOfIngredients }) => {
   const { pathname } = useLocation();
@@ -24,6 +26,11 @@ const Header = ({ countOfIngredients, setCountOfIngredients }) => {
       </div>
     </header>
   )
+}
+
+Header.propTypes = {
+  countOfIngredients: PropTypes.number.isRequired,
+  setCountOfIngredients: PropTypes.func.isRequired,
 }
 
 export default Header

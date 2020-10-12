@@ -1,8 +1,9 @@
 import React from 'react';
-import { getRandomColor } from '../utils';
+import PropTypes from 'prop-types';
+import { getRandomColor } from '../../utils';
+import './chart.css';
 
-const Chart = props => {
-  const { id, chartInPercents, setSelectedChart } = props;
+const Chart = ({ id, chartInPercents, setSelectedChart }) => {
 
   const styles = {
     stroke: getRandomColor(),
@@ -26,6 +27,12 @@ const Chart = props => {
       onMouseOut={handleMouseOut}
     />
   )
+}
+
+Chart.propTypes = {
+  id: PropTypes.string.isRequired,
+  chartInPercents: PropTypes.number.isRequired,
+  setSelectedChart: PropTypes.func.isRequired,
 }
 
 export default React.memo(Chart)

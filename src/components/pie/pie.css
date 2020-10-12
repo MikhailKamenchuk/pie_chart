@@ -10,17 +10,6 @@
   filter: drop-shadow(0 0px 12px #ddd);
 }
 
-.pie__chart {
-  width: 150px;
-  height: 150px;
-  fill: none;
-  stroke-width: 140;
-  stroke: #000;
-  transform: translate(75px, 75px);
-  stroke-dasharray: 440;
-  stroke-dashoffset: 440;
-}
-
 .pie__selected-chart-info{
   margin-top: 15px;
 }

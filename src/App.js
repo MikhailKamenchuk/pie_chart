@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Pie from './components/Pie';
-import Header from './components/Header';
-import IngredientCreationForm from './components/IngredientCreationForm';
+import Pie from './components/pie/Pie';
+import Header from './components/header/Header';
+import IngredientCreationForm from './components/ingredientCreationForm/IngredientCreationForm';
 import './App.css';
 
 const App = () => {
@@ -11,14 +11,16 @@ const App = () => {
 
   const maxPossible = 100 - ingredientsList.reduce((acc, next) => acc + +next.ingredientPercent, 0);
 
-  const IngredientCreationFormList = [...new Array(countOfIngredients)].map((_, idx) => (
-    <IngredientCreationForm
-      key={idx}
-      ingredientsList={ingredientsList}
-      setIngredientsList={setIngredientsList}
-      maxPossible={maxPossible}
-    />
-  ));
+  const IngredientCreationFormList = useMemo(() => {
+    return [...new Array(countOfIngredients)].map((_, idx) => (
+      <IngredientCreationForm
+        key={idx}
+        ingredientsList={ingredientsList}
+        setIngredientsList={setIngredientsList}
+        maxPossible={maxPossible}
+      />
+    ))
+  }, [ingredientsList, countOfIngredients, maxPossible]);
 
   return (
     <div className="page">
