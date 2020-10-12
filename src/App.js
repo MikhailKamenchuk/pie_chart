@@ -1,30 +1,40 @@
 import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import Pie from './components/Pie';
+import Header from './components/Header';
 import IngredientCreationForm from './components/IngredientCreationForm';
 import './App.css';
+
 
 const App = () => {
   const [countOfIngredients, setCountOfIngredients] = useState(0);
 
   const [ingredientsList, setIngredientsList] = useState([]);
+
+  const IngredientCreationFormList = [...new Array(countOfIngredients)].map((_, idx) => (
+    <IngredientCreationForm key={idx} ingredientsList={ingredientsList} setIngredientsList={setIngredientsList} />
+  ));
+
   return (
     <div className="page">
-      <header className="header">
-        <div className="btns-wrapper">
-          <button className="add-ingredient-btn btn" onClick={() => setCountOfIngredients(countOfIngredients + 1)}>Добавить ингредиент</button>
-          <button className="to-visualization btn">К визуализации <i class="fas fa-arrow-right"></i></button>
-        </div>
-      </header>
-      <section className="ingredients">
-        <div className='ingredients-wrapper'>
-          <h2 className="ingredients__title">Список ингредиентов: </h2>
-          {[...new Array(countOfIngredients)].map((_, idx) => (
-            <IngredientCreationForm key={idx} ingredientsList={ingredientsList} setIngredientsList={setIngredientsList} />
-          ))}
+      <Header countOfIngredients={countOfIngredients} setCountOfIngredients={setCountOfIngredients} />
+      <section className="content">
+        <div className='content-wrapper'>
+          <Switch>
+            <Route path="/" exact render={() => (
+              <>
+                <h2 className="content__title">Список ингредиентов: </h2>
+                {IngredientCreationFormList}
+              </>
+            )}>
+            </Route>
+            <Route path="/pie"  >
+              <Pie ingredientsList={ingredientsList} />
+            </Route>
+          </Switch>
         </div>
       </section>
-      {/* <Pie ingredientsList={ingredientsList} /> */}
-    </div>
+    </div >
   );
 }
 

@@ -8,7 +8,7 @@
   color: #666
 }
 .header,
-.ingredients {
+.content {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -62,11 +62,11 @@
 .add-ingredient-btn {
   margin-bottom: 10px;
 }
-.ingredients__title {
+.content__title {
   margin: 15px 0
 }
 
-.ingredients-wrapper {
+.content-wrapper {
   min-height: calc(100vh - 100px);
   display: flex;
   flex-direction: column;

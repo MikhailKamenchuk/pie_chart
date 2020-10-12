@@ -3,7 +3,8 @@
 }
 .pie{
   width: 300px;
-  height: 300px
+  height: 300px;
+  filter: drop-shadow( 0 0px 12px #ddd);
 }
 
 .pie__chart{
@@ -16,8 +17,3 @@
   stroke-dasharray: 440;
   stroke-dashoffset: 440;
 }
- 
-/* .pie__chart:nth-child(2){ */
-  
-  /* stroke-dashoffset: calc(440 - (440 * 25 / 100)); */
-/* } */

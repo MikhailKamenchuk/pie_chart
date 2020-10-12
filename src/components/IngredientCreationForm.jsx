@@ -1,9 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { idGenerator } from '../utils';
 import './ingredientCreationForm.css'
 
-const IngredientCreationForm = ({ ingredientsList, setIngredientsList }) => {
+const IngredientCreationForm = ({ ingredientsList, setIngredientsList, maxPossible }) => {
   const [newIngredient, setNewIngredient] = useState({ id: idGenerator(), ingredientName: '', ingredientPercent: '' })
   const updateIngredients = () => {
     const elemIndex = ingredientsList.findIndex(el => newIngredient.id === el.id);
@@ -24,33 +23,36 @@ const IngredientCreationForm = ({ ingredientsList, setIngredientsList }) => {
   }
 
   return (
-    <form className="ingredient form">
-      <div className="form-field">
-        <input
-          className="ingredient__name"
-          type="text"
-          name="ingredientName"
-          id="ingredientName"
-          placeholder="Продукт: "
-          onBlur={updateIngredients}
-          value={newIngredient.ingredientName}
-          onChange={handleChangeInput}
-        />
-      </div>
-      <div className="form-field">
-        <input
-          className="ingredient__percent"
-          type="text"
-          name="ingredientPercent"
-          id="ingredientPercent"
-          placeholder="Количество в %: "
-          value={newIngredient.ingredientPercent}
-          onChange={handleChangeInput}
-          onBlur={updateIngredients}
-        />
-      </div>
-    </form>
+    <>
+      <form className="ingredient form">
+        <div className="form-field">
+          <input
+            className="ingredient__name"
+            type="text"
+            name="ingredientName"
+            id="ingredientName"
+            placeholder="Продукт: "
+            onBlur={updateIngredients}
+            value={newIngredient.ingredientName}
+            onChange={handleChangeInput}
+          />
+        </div>
+        <div className="form-field">
+          <input
+            className="ingredient__percent"
+            type="number"
+            name="ingredientPercent"
+            id="ingredientPercent"
+            placeholder="Количество в %: "
+            value={newIngredient.ingredientPercent}
+            onChange={handleChangeInput}
+            onBlur={updateIngredients}
+          />
+        </div>
+      </form>
+    </>
+
   )
 }
 
-export default IngredientCreationForm
+export default React.memo(IngredientCreationForm)
