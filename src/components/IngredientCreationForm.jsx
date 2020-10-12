@@ -16,10 +16,16 @@ const IngredientCreationForm = ({ ingredientsList, setIngredientsList, maxPossib
         ...ingredientsList.slice(elemIndex + 1),
       ])
   }
+  const validatePersents = percent =>
+    parseInt(percent) > maxPossible || parseInt(percent) < 0
+      ? maxPossible
+      : percent;
 
-  const handleChangeInput = async e => {
+  const handleChangeInput = e => {
     const { name, value } = e.target;
-    setNewIngredient({ ...newIngredient, [name]: value });
+    name === 'ingredientPercent'
+      ? setNewIngredient({ ...newIngredient, [name]: validatePersents(value) })
+      : setNewIngredient({ ...newIngredient, [name]: value });
   }
 
   return (
@@ -35,11 +41,14 @@ const IngredientCreationForm = ({ ingredientsList, setIngredientsList, maxPossib
             onBlur={updateIngredients}
             value={newIngredient.ingredientName}
             onChange={handleChangeInput}
+            required
           />
         </div>
         <div className="form-field">
           <input
             className="ingredient__percent"
+            max={maxPossible}
+            min={0}
             type="number"
             name="ingredientPercent"
             id="ingredientPercent"
@@ -47,6 +56,7 @@ const IngredientCreationForm = ({ ingredientsList, setIngredientsList, maxPossib
             value={newIngredient.ingredientPercent}
             onChange={handleChangeInput}
             onBlur={updateIngredients}
+            required
           />
         </div>
       </form>

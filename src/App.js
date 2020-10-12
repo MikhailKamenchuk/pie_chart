@@ -5,14 +5,19 @@ import Header from './components/Header';
 import IngredientCreationForm from './components/IngredientCreationForm';
 import './App.css';
 
-
 const App = () => {
   const [countOfIngredients, setCountOfIngredients] = useState(0);
-
   const [ingredientsList, setIngredientsList] = useState([]);
 
+  const maxPossible = 100 - ingredientsList.reduce((acc, next) => acc + +next.ingredientPercent, 0);
+
   const IngredientCreationFormList = [...new Array(countOfIngredients)].map((_, idx) => (
-    <IngredientCreationForm key={idx} ingredientsList={ingredientsList} setIngredientsList={setIngredientsList} />
+    <IngredientCreationForm
+      key={idx}
+      ingredientsList={ingredientsList}
+      setIngredientsList={setIngredientsList}
+      maxPossible={maxPossible}
+    />
   ));
 
   return (
@@ -24,6 +29,7 @@ const App = () => {
             <Route path="/" exact render={() => (
               <>
                 <h2 className="content__title">Список ингредиентов: </h2>
+                <span className='content__empty-place'>{`Свободного места: ${maxPossible}`}</span>
                 {IngredientCreationFormList}
               </>
             )}>
