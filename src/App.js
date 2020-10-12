@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Pie from './components/Pie';
+import IngredientCreationForm from './components/IngredientCreationForm';
 
-function App() {
+const App = () => {
+  const [countOfIngredients, setCountOfIngredients] = useState(0);
+
+  const [ingredientsList, setIngredientsList] = useState([]);
+// debugger
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button className="add-ingredient-btn" onClick={() => setCountOfIngredients(countOfIngredients + 1)}>Добавить ингредиент</button>
+      {[...new Array(countOfIngredients)].map((_, idx) => (
+        <IngredientCreationForm key={idx} ingredientsList={ingredientsList} setIngredientsList={setIngredientsList} />
+      ))}
+      <Pie ingredientsList={ingredientsList} />
     </div>
   );
 }
