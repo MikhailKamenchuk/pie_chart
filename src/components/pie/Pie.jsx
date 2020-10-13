@@ -23,7 +23,7 @@ function Pie({ ingredientsList }) {
       <h2 className="content__title">Пирог: </h2>
       <figure className="pie-container">
         <svg className="pie">
-          <circle className='pie__chart' cx={70} cy={70} r={70} style={{ stroke: 'transparent', strokeDashoffset: 0 }} />
+          <circle className='pie__chart' cx={70} cy={70} r={70} style={{ stroke: '#fff', strokeDashoffset: 0 }} />
           {ingredientsList.map((ingredient, index) => (
             <Chart
               key={ingredient.id}
